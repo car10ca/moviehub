@@ -1,0 +1,38 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Movies by Language{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Find Movies by Language</h1>
+    <form method="get" action="{% url 'movies_by_language' %}">
+        <div class="form-group">
+            <!-- label for language dropdown -->
+            <label for="language">Select Language:</label>
+            <!-- language dropdown menu -->
+            <select id="language" name="language" class="form-control">
+                <!-- option for all languages -->
+                <option value="">All Languages</option>
+                <!-- loop through languages and create an option for each -->
+                {% for language in languages %}
+                    <!-- mark the selected language if it matches the selected_language variable -->
+                    <option value="{{ language.name }}" {% if language.name == selected_language %}selected{% endif %}>{{ language.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- submit button -->
+        <button type="submit" class="btn btn-primary">Filter Movies</button>
+    </form>
+
+    <h2 class="mt-4">Movies</h2>
+    <!-- list of filtered movies -->
+    <ul class="list-group">
+        {% for movie in movies %}
+            <li class="list-group-item">
+                <!-- link to the movie detail page -->
+                <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "movies/base.html" %}
+
+{% block title %}All Actors{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>All Actors</h1>
+    <form method="get" class="form-inline mb-3">
+        <input type="text" name="q" class="form-control mr-2" placeholder="Search by name" value="{{ search_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="{% url 'actors_list' %}" class="btn btn-secondary ml-2">Reset</a>
+    </form>
+    <div class="mb-3">
+        <a href="?sort=name&order=asc" class="btn btn-primary {% if order == 'asc' %}active{% endif %}">Sort by Name Ascending</a>
+        <a href="?sort=name&order=desc" class="btn btn-primary {% if order == 'desc' %}active{% endif %}">Sort by Name Descending</a>
+    </div>
+    <div class="mb-3">
+        <strong>Filter by Initial:</strong>
+        {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <a href="?initial={{ letter }}&sort=name&order={{ order }}" class="btn btn-link {% if initial == letter %}active{% endif %}">{{ letter }}</a>
+        {% endfor %}
+    </div>
+    <ul class="list-group mt-3">
+        {% for actor in actors %}
+            <li class="list-group-item">
+                {{ actor.name }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

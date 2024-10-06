@@ -1,0 +1,36 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Movie List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Movies</h1>
+    <form method="get" class="form-inline mb-3">
+        <input type="text" name="q" class="form-control mr-2" placeholder="Search by title" value="{{ search_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="{% url 'movie_list' %}" class="btn btn-secondary ml-2">Reset</a>
+    </form>
+    <div class="mb-3">
+        <a href="?sort=title&order=asc" class="btn btn-primary {% if order == 'asc' %}active{% endif %}">Sort by Title Ascending</a>
+        <a href="?sort=title&order=desc" class="btn btn-primary {% if order == 'desc' %}active{% endif %}">Sort by Title Descending</a>
+    </div>
+    <div class="mb-3">
+        <strong>Filter by Initial:</strong>
+        {% for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+            <a href="?initial={{ letter }}&sort=title&order={{ order }}" class="btn btn-link {% if initial == letter %}active{% endif %}">{{ letter }}</a>
+        {% endfor %}
+    </div>
+    <a href="{% url 'movie_create' %}" class="btn btn-primary mb-3">Add New Movie</a>
+    <ul class="list-group">
+        {% for movie in movies %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+                <div>
+                    <a href="{% url 'movie_update' movie.pk %}" class="btn btn-sm btn-secondary mr-2">Edit</a>
+                    <a href="{% url 'movie_delete' movie.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Moviehub Home{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Welcome to Moviehub</h1>
+    <p class="lead text-center"> 
+        What is the <em><mark>highest grossing</mark></em> movie of all time? <br>
+        Which director has the <em><mark>highest ranking</mark></em> movies on the imdb? <br>
+        Want to see a list of <em><mark>PG-13</mark></em> ranked movies? <br>
+        How many movies has <em><mark>Steven Spielberg</mark></em> directed? <br><br>
+        This and so much more can be explored using Moviehub's database. <br><br>
+    </p>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow p-4 mb-4 bg-white">
+                <div class="card-body">
+                    <h3 class="card-title">Movies</h3>
+                    <p class="card-text">Discover and explore movies across genres and years.</p>
+                    <div class="d-flex flex-column">
+                        <a href="{% url 'movie_list' %}" class="btn btn-info mt-2">All movies</a>
+                        <a href="{% url 'top_grossing_movies' %}" class="btn btn-info mt-2">Top grossing</a>
+                        <a href="{% url 'top_movies_by_imdb' %}" class="btn btn-info mt-2">Highest rated</a>
+                        <a href="{% url 'movies_by_year_genre' %}" class="btn btn-info mt-2">By year &amp; genre</a>
+                        <a href="{% url 'movies_by_content_rating' %}" class="btn btn-info mt-2">By content rating</a>
+                        <a href="{% url 'movies_by_language' %}" class="btn btn-info mt-2">By language</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow p-4 mb-4 bg-white">
+                <div class="card-body">
+                    <h3 class="card-title">Actors</h3>
+                    <p class="card-text">Browse through profiles and filmographies of famous actors.</p>
+                    <div class="d-flex flex-column">
+                        <a href="{% url 'actors_list' %}" class="btn btn-info mt-2">All actors</a>
+                        <a href="{% url 'actors_with_director' %}" class="btn btn-info mt-2">Actor-Director pairings</a>
+                        <a href="{% url 'movies_by_actor' %}" class="btn btn-info mt-2">Movies by actor</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow p-4 mb-4 bg-white">
+                <div class="card-body">
+                    <h3 class="card-title">Directors</h3>
+                    <p class="card-text">Explore the creative minds behind the camera.</p>
+                    <div class="d-flex flex-column">
+                        <a href="{% url 'directors_list' %}" class="btn btn-info mt-2">All directors</a>
+                        <a href="{% url 'top_directors' %}" class="btn btn-info mt-2">Top grossing</a>
+                        <a href="{% url 'top_versatile_directors' %}" class="btn btn-info mt-2">Most versatile</a>
+                        <a href="{% url 'top_directors_by_imdb' %}" class="btn btn-info mt-2">Highest imdb score</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

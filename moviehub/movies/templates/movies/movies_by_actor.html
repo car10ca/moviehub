@@ -1,0 +1,38 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Movies by Actor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Find Movies by Actor</h1>
+    <form method="get" action="{% url 'movies_by_actor' %}">
+        <div class="form-group">
+            <!-- label for actor dropdown -->
+            <label for="actor">Select Actor:</label>
+            <!-- actor dropdown menu -->
+            <select id="actor" name="actor" class="form-control">
+                <!-- option for all actors -->
+                <option value="">All Actors</option>
+                <!-- loop through actors and create an option for each -->
+                {% for actor in actors %}
+                    <!-- mark the selected actor if it matches the selected_actor variable -->
+                    <option value="{{ actor.name }}" {% if actor.name == selected_actor %}selected{% endif %}>{{ actor.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- submit button -->
+        <button type="submit" class="btn btn-primary">Filter Movies</button>
+    </form>
+
+    <h2 class="mt-4">Movies</h2>
+    <!-- list of filtered movies -->
+    <ul class="list-group">
+        {% for movie in movies %}
+            <li class="list-group-item">
+                <!-- link to the movie detail page -->
+                <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

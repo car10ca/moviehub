@@ -1,0 +1,18 @@
+{% extends "movies/base.html" %}
+{% load custom_filters %}
+
+{% block title %}Top 10 Directors{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Top 10 Directors by Total Gross Earnings</h1>
+    <ul class="list-group mt-3">
+        {% for director in directors %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ director.name }}
+                <h5><span class="badge badge-info badge-pill display-4">{{ director.total_gross|currency }}</span></h5>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

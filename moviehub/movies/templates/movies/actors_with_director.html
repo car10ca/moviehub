@@ -1,0 +1,52 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Actors with Director{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Actors with Director</h1>
+    <p>Select a director from the menu to see a list of the actors this director has worked with along with the number of times they worked together.</p>
+    <form id="director-form" class="form-inline mb-3">
+        <label for="director-select" class="mr-2">Select Director:</label>
+        <select id="director-select" class="form-control mr-2">
+            <!-- Options will be populated by JavaScript -->
+        </select>
+        <button type="submit" class="btn btn-primary">Get Actors</button>
+    </form>
+    <div id="results"></div>
+</div>
+
+<script>
+    // Fetch and populate the directors list dropdown
+    fetch('/api/directors/all/')
+        .then(response => response.json()) // Parse JSON from response
+        .then(data => {
+            const select = document.getElementById('director-select'); // Get the dropdown element
+            data.forEach(director => {
+                const option = document.createElement('option'); // Create a new option element
+                option.value = director.id; // Set the value attribute to the director's ID
+                option.textContent = director.name; // Set the display text to the director's name
+                select.appendChild(option); // Add the option to the dropdown
+            });
+        });
+
+    // Handle form submission
+    document.getElementById('director-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        const directorId = document.getElementById('director-select').value; // Get the selected director's ID
+        fetch(`/api/directors/${directorId}/actors/`) // Fetch the list of actors for the selected director
+            .then(response => response.json()) // Parse JSON from response
+            .then(data => {
+                const resultsDiv = document.getElementById('results'); // Get the results div
+                resultsDiv.innerHTML = '<h2>Actors</h2>'; // Set the results title
+                const ul = document.createElement('ul'); // Create a new unordered list element
+                data.forEach(actor => {
+                    const li = document.createElement('li'); // Create a new list item element
+                    li.textContent = `${actor.name} (${actor.count})`; // Set the list item text to the actor's name and count
+                    ul.appendChild(li); // Add the list item to the unordered list
+                });
+                resultsDiv.appendChild(ul); // Add the unordered list to the results div
+            });
+    });
+</script>
+{% endblock %}

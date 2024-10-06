@@ -1,0 +1,38 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Movies by Content Rating{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Find Movies by Content Rating</h1>
+    <form method="get" action="{% url 'movies_by_content_rating' %}">
+        <div class="form-group">
+            <!-- label for content rating dropdown -->
+            <label for="rating">Select Content Rating:</label>
+            <!-- content rating dropdown menu -->
+            <select id="rating" name="rating" class="form-control">
+                <!-- option for all content ratings -->
+                <option value="">All Ratings</option>
+                <!-- loop through content ratings and create an option for each -->
+                {% for rating in content_ratings %}
+                    <!-- mark the selected rating if it matches the selected_rating variable -->
+                    <option value="{{ rating.rating }}" {% if rating.rating == selected_rating %}selected{% endif %}>{{ rating.rating }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- submit button -->
+        <button type="submit" class="btn btn-primary">Filter Movies</button>
+    </form>
+
+    <h2 class="mt-4">Movies</h2>
+    <!-- list of filtered movies -->
+    <ul class="list-group">
+        {% for movie in movies %}
+            <li class="list-group-item">
+                <!-- link to the movie detail page -->
+                <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

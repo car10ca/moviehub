@@ -1,0 +1,17 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Top 5 Versatile Directors{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Top 5 Directors with the Most Unique Actor Collaborations</h1>
+    <ul class="list-group mt-3">
+        {% for director in directors %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ director.name }}
+                <h5><span class="badge badge-info badge-pill">{{ director.unique_actors }}</span></h5>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

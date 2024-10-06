@@ -1,0 +1,16 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Top Directors by IMDb Score{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Top Directors by IMDb Score</h2>
+    <ul class="list-group">
+        {% for director in directors %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ director.name }} - {{ director.average_imdb|floatformat:1 }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

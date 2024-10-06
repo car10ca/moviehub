@@ -1,0 +1,16 @@
+{% extends "movies/base.html" %}
+{% block title %}Top 10 Movies by IMDb Score{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Top 10 Movies by IMDb Score</h1>
+    <ul class="list-group mt-3">
+        {% for movie in movies %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ movie.title }}
+                <h5><span class="badge badge-info badge-pill">{{ movie.imdb_score|floatformat:1 }}</span></h5>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

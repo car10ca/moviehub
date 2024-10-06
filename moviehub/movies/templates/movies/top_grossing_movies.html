@@ -1,0 +1,43 @@
+{% extends "movies/base.html" %}
+
+{% block title %}Top Grossing Movies{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Top 10 Highest Grossing Movies</h1>
+    <div id="top-grossing-movies" class="list-group">
+        <!-- Movies will be populated by JavaScript -->
+    </div>
+</div>
+
+<script>
+    // Fetch and display the top 10 highest grossing movies
+
+    //http get request to API endpoint, returning json data on top grossing movies
+    fetch('/api/movies/top_grossing/')
+
+        //convert from json to js objects
+        .then(response => response.json())
+        
+        //generate html content
+        .then(data => {
+            const container = document.getElementById('top-grossing-movies');
+            data.forEach(movie => {
+                const a = document.createElement('a');
+                a.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center';
+                a.textContent = movie.title;
+
+                const h5 = document.createElement('h5');
+                h5.className = 'mb-0';
+
+                const span = document.createElement('span');
+                span.className = 'badge badge-info badge-pill';
+                span.textContent = `$${movie.gross.toLocaleString()}`;
+
+                h5.appendChild(span);
+                a.appendChild(h5);
+                container.appendChild(a);
+            });
+        });
+</script>
+{% endblock %}

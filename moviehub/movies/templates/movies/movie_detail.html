@@ -1,0 +1,27 @@
+{% extends "movies/base.html" %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">{{ movie.title }}</h1>
+    <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Director:</strong> {{ movie.director.name }}</li>
+        <li class="list-group-item"><strong>Duration:</strong> {{ movie.duration }} minutes</li>
+        <li class="list-group-item"><strong>Gross:</strong> ${{ movie.gross }}</li>
+        <li class="list-group-item"><strong>Language:</strong> {{ movie.language.name }}</li>
+        <li class="list-group-item"><strong>Country:</strong> {{ movie.country.name }}</li>
+        <li class="list-group-item"><strong>Content Rating:</strong> {{ movie.content_rating.rating }}</li>
+        <li class="list-group-item"><strong>Budget:</strong> ${{ movie.budget }}</li>
+        <li class="list-group-item"><strong>Year:</strong> {{ movie.year }}</li>
+        <li class="list-group-item"><strong>IMDB Score:</strong> {{ movie.imdb_score }}</li>
+        <li class="list-group-item"><strong>Actors:</strong> {% for actor in movie.actors.all %}{{ actor.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+        <li class="list-group-item"><strong>Genres:</strong> {% for genre in movie.genres.all %}{{ genre.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+    </ul>
+    <div class="mt-3">
+        <a href="{% url 'movie_update' movie.pk %}" class="btn btn-secondary mr-2">Edit</a>
+        <a href="{% url 'movie_delete' movie.pk %}" class="btn btn-danger mr-2">Delete</a>
+        <a href="{% url 'movie_list' %}" class="btn btn-primary">Back to list</a>
+    </div>
+</div>
+{% endblock %}
