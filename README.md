@@ -1,7 +1,7 @@
 # MovieHub
 
 ## Overview
-MovieHub is a Django-based web application developed for the **CM3035 Advanced Web Development** course. The application provides a comprehensive platform to explore movie data sourced from the IMDB 5000 movie dataset. It offers various functionalities such as browsing movies, directors, and actors, along with filtering options, CRUD operations, and detailed insights into movie statistics. The project was designed to showcase web development skills using Django and a relational database model.
+MovieHub is a Django-based web application developed as a midterm project for a module as part of a BA in Computer Science. The application provides a comprehensive platform to explore movie data sourced from the IMDB 5000 movie dataset. It offers various functionalities such as browsing movies, directors, and actors, along with filtering options, CRUD operations, and detailed insights into movie statistics. The project was designed to showcase web development skills using Django and a relational database model. The project scored 62.5% at a UK university where anything from 60 - 69% is considered a B. 
 
 ## Dataset Information
 The dataset used for this project is the [IMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/carolzhangdc/imdb-5000-movie-dataset) by Yueming (2017), available on Kaggle. The dataset provides detailed information on movies, including release year, budget, gross revenue, directors, and actors. Although the dataset includes social media rankings of actors and directors, these elements were not utilized in this project.
@@ -115,7 +115,4 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 ## Author
 Kerstin Kegel
-This project was developed as part of the CM3035 Advanced Web Development course in the BSc Computer Science program.
-
-- GitHub: car10ca
-- Email: kerstinkegel@gmail.com
+This project was developed as part of a BSc in Computer Science.
