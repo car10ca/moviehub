@@ -111,10 +111,3 @@ To run the tests, execute the following command in the root directory:
 `python manage.py test`
 
 The tests cover CRUD operations, API endpoints, and view logic to ensure the application is functioning as expected.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
-## Author
-Kerstin Kegel
-This project was developed as part of a BSc in Computer Science.
